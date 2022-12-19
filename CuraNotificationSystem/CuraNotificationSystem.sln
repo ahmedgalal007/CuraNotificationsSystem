@@ -5,6 +5,16 @@ VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Service.Plugin", "Cura.Notification.Service.Plugin\Cura.Notification.Service.Plugin.csproj", "{0BFB479C-EC59-48E6-8D66-0983501BCA9F}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{3D6A21A0-B313-403A-9DE3-E79BBBCD6558}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Email.Provider", "Providers\Cura.Notification.Email.Provider\Cura.Notification.Email.Provider.csproj", "{F4407B7C-22AA-450D-A45F-1488E487D8B7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.SMS.Provider", "Providers\Cura.Notification.SMS.Provider\Cura.Notification.SMS.Provider.csproj", "{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{34B4FA5C-6588-4D7D-8B43-5432558DFEAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Core", "Shared\Cura.Notification.Core\Cura.Notification.Core.csproj", "{06C0674E-C1A2-48C9-83CB-82D820038522}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,9 +25,26 @@ Global
 		{0BFB479C-EC59-48E6-8D66-0983501BCA9F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0BFB479C-EC59-48E6-8D66-0983501BCA9F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0BFB479C-EC59-48E6-8D66-0983501BCA9F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F4407B7C-22AA-450D-A45F-1488E487D8B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F4407B7C-22AA-450D-A45F-1488E487D8B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F4407B7C-22AA-450D-A45F-1488E487D8B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F4407B7C-22AA-450D-A45F-1488E487D8B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}.Release|Any CPU.Build.0 = Release|Any CPU
+		{06C0674E-C1A2-48C9-83CB-82D820038522}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{06C0674E-C1A2-48C9-83CB-82D820038522}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{06C0674E-C1A2-48C9-83CB-82D820038522}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{06C0674E-C1A2-48C9-83CB-82D820038522}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{F4407B7C-22AA-450D-A45F-1488E487D8B7} = {3D6A21A0-B313-403A-9DE3-E79BBBCD6558}
+		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404} = {3D6A21A0-B313-403A-9DE3-E79BBBCD6558}
+		{06C0674E-C1A2-48C9-83CB-82D820038522} = {34B4FA5C-6588-4D7D-8B43-5432558DFEAB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AF32B52-5DC1-4751-B9DE-2849F4AFB2E8}
