@@ -348,3 +348,5 @@ MigrationBackup/
 
 # Ionide (cross platform F# VS Code tools) working folder
 .ionide/
+/CuraNotificationSystem/Cura.Notification.Service.Plugin/Providers
+/CuraNotificationSystem/Clients/Cura.Notifications.Clients.Console/Plugins/Providers

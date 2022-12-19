@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Cura.Notification.Service.Plugin.Interfaces;
+namespace Cura.Notification.Core;
 public interface INotification
 {
-    public Guid Id { get; set; }
-    public string Message { get; set; }
+	Guid Id { get; set; }
+	IMessage message { get; set; }
 }

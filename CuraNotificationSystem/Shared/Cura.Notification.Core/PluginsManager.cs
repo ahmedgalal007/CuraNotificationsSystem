@@ -8,6 +8,34 @@ using System.Threading.Tasks;
 namespace Cura.Notification.Core;
 public static class PluginsManager
 {
+	/// <summary>
+	/// Load the plugins commands in the relative path of the assembly
+	/// </summary>
+	/// <param name="relativePath"> the relative path to the assembly path</param>
+	/// <param name="assemblyPath">the assembly path</param>
+	/// <returns></returns>
+	public static IEnumerable<ICommand> GetDirectoryPluginsCommands(string relativePath, string assemblyPath = "")
+	{
+		if (string.IsNullOrWhiteSpace(assemblyPath)) assemblyPath = Environment.CurrentDirectory;
+		string pluginsFolder = Path.Combine(assemblyPath, relativePath);
+		List<string> pluginPaths = new List<string>();
+		List<string> files = Directory.GetFiles(pluginsFolder).ToList();
+		foreach (string file in files)
+		{
+			// Paths to plugins to load.
+			string path = Path.Combine(pluginsFolder, file);
+			if (Path.GetExtension(path).ToLower() == ".dll")
+				pluginPaths.Add(path);
+		};
+
+		IEnumerable<ICommand> commands = pluginPaths.SelectMany(pluginPath =>
+		{
+			Assembly pluginAssembly = PluginsManager.LoadPlugin(pluginPath, Environment.CurrentDirectory);
+			return PluginsManager.CreateCommands(pluginAssembly);
+		}).ToList();
+
+		return commands;
+	}
 	public static Assembly LoadPlugin(string relativePath, string assemplyLocation)
 	{
 		// Navigate up to the solution root
@@ -30,7 +58,9 @@ public static class PluginsManager
 
 		foreach (Type type in assembly.GetTypes())
 		{
-			if (typeof(ICommand).IsAssignableFrom(type))
+			if (typeof(ICommand).IsAssignableFrom(type)
+				&& !type.IsInterface
+				&& !type.IsAbstract)
 			{
 				ICommand result = Activator.CreateInstance(type) as ICommand;
 				if (result != null)

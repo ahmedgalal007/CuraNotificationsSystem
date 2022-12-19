@@ -6,4 +6,16 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <Target Name="MakeMyDir" AfterTargets="PrepareForBuild">
+    <MakeDir Directories="$(SolutionDir)Cura.Notification.Service.Plugin\Providers" Condition="!Exists('$(SolutionDir)Cura.Notification.Service.Plugin\Providers')" />
+  </Target>
+  
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /d  &quot;$(OutDir)Cura.Notification.SMS.Provider.dll&quot; &quot;$(SolutionDir)Cura.Notification.Service.Plugin\Providers&quot;" />
+  </Target>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\Shared\Cura.Notification.Core\Cura.Notification.Core.csproj" />
+  </ItemGroup>
+
 </Project>

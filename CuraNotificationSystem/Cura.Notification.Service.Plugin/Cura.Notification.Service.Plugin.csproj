@@ -3,15 +3,19 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <ImplicitUsings>enable</ImplicitUsings>
+    <EnableDynamicLoading>true</EnableDynamicLoading>
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\Shared\Cura.Notification.Core\Cura.Notification.Core.csproj" />
   </ItemGroup>
-
+  
+  <Target Name="MakeMyDir" AfterTargets="PrepareForBuild">
+    <MakeDir Directories="$(SolutionDir)Clients\Cura.Notifications.Clients.Console\Plugins\Providers" Condition="!Exists('$(SolutionDir)Clients\Cura.Notifications.Clients.Console\Plugins\Providers')" />
+  </Target>
   <Target Name="PostBuild" AfterTargets="PostBuildEvent">
-    <Exec Command="xcopy /y /d  &quot;$(OutDir)Cura.Notification.Service.Plugin.dll&quot; &quot;$(SolutionDir)Clients\Cura.Notifications.Clients.Console\Plugins&quot;" />
+    <Exec Command="xcopy /y /d  &quot;$(OutDir)Cura.Notification.Service.Plugin.dll&quot; &quot;$(SolutionDir)Clients\Cura.Notifications.Clients.Console\Plugins&quot;&#xD;&#xA;xcopy /y /d  &quot;$(ProjectDir)Providers\*&quot; &quot;$(SolutionDir)Clients\Cura.Notifications.Clients.Console\Plugins\Providers&quot;" />
   </Target>
 
 </Project>
