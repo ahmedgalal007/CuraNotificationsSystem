@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
@@ -9,5 +9,9 @@
   <ItemGroup>
     <ProjectReference Include="..\Shared\Cura.Notification.Core\Cura.Notification.Core.csproj" />
   </ItemGroup>
+
+  <Target Name="PostBuild" AfterTargets="PostBuildEvent">
+    <Exec Command="xcopy /y /d  &quot;$(OutDir)Cura.Notification.Service.Plugin.dll&quot; &quot;$(SolutionDir)Clients\Cura.Notifications.Clients.Console\Plugins&quot;" />
+  </Target>
 
 </Project>

@@ -14,7 +14,7 @@ public class CuraNotificationServicePlugin : ICommand
 
 	public Int32 Execute()
 	{
-		Console.WriteLine("Hello !!!");
+		Console.WriteLine("Hello !!! From CuraNotificationServicePlugin Execute Command");
 		return 0;
 	}
 }
