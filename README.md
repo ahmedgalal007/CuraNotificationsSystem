@@ -62,7 +62,7 @@ services.AddSingleton(command.ReturnType.Key, command.ReturnType.Value);
 ```
 --
 
-![Design Process SwimeLine](/images/CuraNotifications.png "MarineGEO logo")
+![Design Process SwimeLine](https://github.com/ahmedgalal007/CuraNotificationsSystem/blob/main/Images/CuraNotifications.png?raw=true)
 # Debugging
  Because we are loading external assemblies in the project, It's  suggested to disable Just My Code while debugging
 
