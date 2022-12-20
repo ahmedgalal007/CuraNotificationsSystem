@@ -3,25 +3,40 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.3.32825.248
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Service.Plugin", "Cura.Notification.Service.Plugin\Cura.Notification.Service.Plugin.csproj", "{0BFB479C-EC59-48E6-8D66-0983501BCA9F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notification.Service.Plugin", "Cura.Notification.Service.Plugin\Cura.Notification.Service.Plugin.csproj", "{0BFB479C-EC59-48E6-8D66-0983501BCA9F}"
+	ProjectSection(ProjectDependencies) = postProject
+		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404} = {9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}
+		{F4407B7C-22AA-450D-A45F-1488E487D8B7} = {F4407B7C-22AA-450D-A45F-1488E487D8B7}
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Providers", "Providers", "{3D6A21A0-B313-403A-9DE3-E79BBBCD6558}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Email.Provider", "Providers\Cura.Notification.Email.Provider\Cura.Notification.Email.Provider.csproj", "{F4407B7C-22AA-450D-A45F-1488E487D8B7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notification.Email.Provider", "Providers\Cura.Notification.Email.Provider\Cura.Notification.Email.Provider.csproj", "{F4407B7C-22AA-450D-A45F-1488E487D8B7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.SMS.Provider", "Providers\Cura.Notification.SMS.Provider\Cura.Notification.SMS.Provider.csproj", "{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notification.SMS.Provider", "Providers\Cura.Notification.SMS.Provider\Cura.Notification.SMS.Provider.csproj", "{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Shared", "Shared", "{34B4FA5C-6588-4D7D-8B43-5432558DFEAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Core", "Shared\Cura.Notification.Core\Cura.Notification.Core.csproj", "{06C0674E-C1A2-48C9-83CB-82D820038522}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notification.Core", "Shared\Cura.Notification.Core\Cura.Notification.Core.csproj", "{06C0674E-C1A2-48C9-83CB-82D820038522}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Clients", "Clients", "{F99F3362-04D3-4C62-B8CF-72440D4602B3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notifications.Clients.Console", "Clients\Cura.Notifications.Clients.Console\Cura.Notifications.Clients.Console.csproj", "{9C28F821-254F-4FB4-9571-06B5963AB09E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notifications.Clients.Console", "Clients\Cura.Notifications.Clients.Console\Cura.Notifications.Clients.Console.csproj", "{9C28F821-254F-4FB4-9571-06B5963AB09E}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0BFB479C-EC59-48E6-8D66-0983501BCA9F} = {0BFB479C-EC59-48E6-8D66-0983501BCA9F}
+	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notifications.Clients.Api", "Cura.Notifications.Clients.Api\Cura.Notifications.Clients.Api.csproj", "{9E0967A2-AA4D-4E54-B8A3-2DE96CC69A39}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notification.Service.Plugin.UnitTest", "Cura.Notification.Service.Plugin.UnitTest\Cura.Notification.Service.Plugin.UnitTest.csproj", "{D7C76882-B789-4E95-AC41-6496C3DC8F90}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notification.Service.Plugin.UnitTest", "Cura.Notification.Service.Plugin.UnitTest\Cura.Notification.Service.Plugin.UnitTest.csproj", "{D7C76882-B789-4E95-AC41-6496C3DC8F90}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cura.Notifications.Clients.Api", "Clients\Cura.Notifications.Clients.Api\Cura.Notifications.Clients.Api.csproj", "{6879F9A7-033F-4B11-BC12-5B6A7BBBA238}"
+	ProjectSection(ProjectDependencies) = postProject
+		{06C0674E-C1A2-48C9-83CB-82D820038522} = {06C0674E-C1A2-48C9-83CB-82D820038522}
+		{0BFB479C-EC59-48E6-8D66-0983501BCA9F} = {0BFB479C-EC59-48E6-8D66-0983501BCA9F}
+	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DataAccess", "DataAccess", "{EB6A74B6-CF22-44E1-B386-1649AA8C2DC3}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cura.Notifications.Service.Data", "DataAccess\Cura.Notifications.Service.Data\Cura.Notifications.Service.Data.csproj", "{3537C6B4-45D1-43A5-AE40-C6BB6A1D62A2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -49,14 +64,18 @@ Global
 		{9C28F821-254F-4FB4-9571-06B5963AB09E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9C28F821-254F-4FB4-9571-06B5963AB09E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9C28F821-254F-4FB4-9571-06B5963AB09E}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9E0967A2-AA4D-4E54-B8A3-2DE96CC69A39}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9E0967A2-AA4D-4E54-B8A3-2DE96CC69A39}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9E0967A2-AA4D-4E54-B8A3-2DE96CC69A39}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9E0967A2-AA4D-4E54-B8A3-2DE96CC69A39}.Release|Any CPU.Build.0 = Release|Any CPU
 		{D7C76882-B789-4E95-AC41-6496C3DC8F90}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{D7C76882-B789-4E95-AC41-6496C3DC8F90}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D7C76882-B789-4E95-AC41-6496C3DC8F90}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D7C76882-B789-4E95-AC41-6496C3DC8F90}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6879F9A7-033F-4B11-BC12-5B6A7BBBA238}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6879F9A7-033F-4B11-BC12-5B6A7BBBA238}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6879F9A7-033F-4B11-BC12-5B6A7BBBA238}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6879F9A7-033F-4B11-BC12-5B6A7BBBA238}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3537C6B4-45D1-43A5-AE40-C6BB6A1D62A2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3537C6B4-45D1-43A5-AE40-C6BB6A1D62A2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3537C6B4-45D1-43A5-AE40-C6BB6A1D62A2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3537C6B4-45D1-43A5-AE40-C6BB6A1D62A2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,7 +85,8 @@ Global
 		{9DC6A636-D3F3-404A-9DD5-1A40CFDE4404} = {3D6A21A0-B313-403A-9DE3-E79BBBCD6558}
 		{06C0674E-C1A2-48C9-83CB-82D820038522} = {34B4FA5C-6588-4D7D-8B43-5432558DFEAB}
 		{9C28F821-254F-4FB4-9571-06B5963AB09E} = {F99F3362-04D3-4C62-B8CF-72440D4602B3}
-		{9E0967A2-AA4D-4E54-B8A3-2DE96CC69A39} = {F99F3362-04D3-4C62-B8CF-72440D4602B3}
+		{6879F9A7-033F-4B11-BC12-5B6A7BBBA238} = {F99F3362-04D3-4C62-B8CF-72440D4602B3}
+		{3537C6B4-45D1-43A5-AE40-C6BB6A1D62A2} = {EB6A74B6-CF22-44E1-B386-1649AA8C2DC3}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9AF32B52-5DC1-4751-B9DE-2849F4AFB2E8}

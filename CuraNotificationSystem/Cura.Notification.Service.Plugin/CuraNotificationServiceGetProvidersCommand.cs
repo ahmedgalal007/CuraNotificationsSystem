@@ -9,34 +9,30 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Cura.Notification.Service.Plugin;
-public class CuraNotificationServiceIntializeCommand : ICommand
+public class CuraNotificationServiceSendMessageCommand : ICommand
 {
 	private IEnumerable<ICommand> providers;
-	public String Name { get => nameof(CuraNotificationServiceIntializeCommand); }
-	public String Alias { get => "Initialize"; }
-	public String Description { get => "Intialize the Plugin"; }
+	public String Name { get => nameof(CuraNotificationServiceSendMessageCommand); }
+	public String Alias { get => "GetNotificationsProviders"; }
+
+	public String Description { get => "Get all notifications providers "; }
 
 	public Boolean IsEnabled => true;
 
-	public Boolean IsInitializer => true;
+	public Boolean IsInitializer => false;
 
-	public KeyValuePair<Type, object> ReturnType { get; set; } = new KeyValuePair<Type, object>(typeof(IEnumerable<INotificationsProvider>), new List<INotificationsProvider>());
+	public KeyValuePair<Type, object> ReturnType { get; set; } = new KeyValuePair<Type, object>(typeof(IEnumerable<INotification>), new List<INotification>());
 
 	public KeyValuePair<string,object>[] Parameters => new KeyValuePair<string, object>[] { };
 
 	public virtual Int32 Execute()
 	{
 		// string pluginsFolder = Path.Combine(Environment.CurrentDirectory , "..\\..\\..\\Plugins\\Providers");
-		providers = PluginsManager.GetDirectoryPluginsCommands<INotificationsProvider>("Plugins\\Providers", Environment.CurrentDirectory);
+		providers = PluginsManager.GetDirectoryPluginsCommands<INotificationsProvider>("..\\..\\..\\Plugins\\Providers", Environment.CurrentDirectory);
 
 		Console.WriteLine( $"Execute Function Runs on the Command {nameof(CuraNotificationServiceIntializeCommand)}");
 		// load all the plugin assemblies in the Providers folder
-		foreach (var provider in providers)
-		{
-			//Parameters.Append(new KeyValuePair<string, object>(provider.Alias, provider));
-			((List<INotificationsProvider>)ReturnType.Value).Add((INotificationsProvider)provider);
-		}
-		
+		Parameters.Append(new KeyValuePair<string, object>( "Commands", providers));
 		return 0;
 	}
 

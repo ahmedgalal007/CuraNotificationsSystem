@@ -11,4 +11,6 @@ public interface ISubscriber
 	string Name { get; set; }
 	string EventName { get; set; }
 	string? Email { get; set; }
+	string? Mobile { get; set; }
+	string[] Providers { get; set; }
 }

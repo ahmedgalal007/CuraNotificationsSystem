@@ -9,34 +9,39 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Cura.Notification.Service.Plugin;
-public class CuraNotificationServiceIntializeCommand : ICommand
+public class CuraNotificationServiceGetProvidersCommand : ICommand
 {
-	private IEnumerable<ICommand> providers;
+	private IEnumerable<INotificationsProvider> providers;
 	public String Name { get => nameof(CuraNotificationServiceIntializeCommand); }
-	public String Alias { get => "Initialize"; }
-	public String Description { get => "Intialize the Plugin"; }
+	public String Alias { get => "GetNotificationsProviders"; }
+
+	public String Description { get => "Get all notifications providers "; }
 
 	public Boolean IsEnabled => true;
 
-	public Boolean IsInitializer => true;
+	public Boolean IsInitializer => false;
 
-	public KeyValuePair<Type, object> ReturnType { get; set; } = new KeyValuePair<Type, object>(typeof(IEnumerable<INotificationsProvider>), new List<INotificationsProvider>());
+	public KeyValuePair<Type, object> ReturnType { get; set; } = new KeyValuePair<Type, object>(typeof(IEnumerable<INotification>), new List<INotification>());
 
 	public KeyValuePair<string,object>[] Parameters => new KeyValuePair<string, object>[] { };
 
 	public virtual Int32 Execute()
 	{
 		// string pluginsFolder = Path.Combine(Environment.CurrentDirectory , "..\\..\\..\\Plugins\\Providers");
-		providers = PluginsManager.GetDirectoryPluginsCommands<INotificationsProvider>("Plugins\\Providers", Environment.CurrentDirectory);
+		providers = PluginsManager.GetDirectoryPluginsCommands<INotificationsProvider>("..\\..\\..\\Plugins\\Providers", Environment.CurrentDirectory);
 
-		Console.WriteLine( $"Execute Function Runs on the Command {nameof(CuraNotificationServiceIntializeCommand)}");
-		// load all the plugin assemblies in the Providers folder
+		IMessage? message = Parameters.Where(e => e.Key == nameof(IMessage)).First().Value as IMessage;
+		if (message == null) return -1;
+		IList<ISubscriber> subscribers = Parameters.Where(e => e.Key == nameof(IList<ISubscriber>)).First().Value as IList<ISubscriber>;
+		if (subscribers == null) return -1;
+
 		foreach (var provider in providers)
 		{
-			//Parameters.Append(new KeyValuePair<string, object>(provider.Alias, provider));
-			((List<INotificationsProvider>)ReturnType.Value).Add((INotificationsProvider)provider);
+			provider.Send(message, subscribers);
 		}
-		
+		Console.WriteLine( $"Execute Function Runs on the Command {nameof(CuraNotificationServiceIntializeCommand)}");
+		// load all the plugin assemblies in the Providers folder
+		Parameters.Append(new KeyValuePair<string, object>( "Commands", providers));
 		return 0;
 	}
 

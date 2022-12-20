@@ -350,3 +350,4 @@ MigrationBackup/
 .ionide/
 /CuraNotificationSystem/Cura.Notification.Service.Plugin/Providers
 /CuraNotificationSystem/Clients/Cura.Notifications.Clients.Console/Plugins/Providers
+/CuraNotificationSystem/Clients/Cura.Notifications.Clients.Api/Plugins

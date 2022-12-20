@@ -7,5 +7,6 @@ using System.Threading.Tasks;
 namespace Cura.Notification.Core;
 public interface INotificationsProvider: ICommand
 {
-	Task<IList<INotification>> Send(IMessage message, IList<ISubscriber> isubscribers);
+	string ProviderType { get; }
+	Task<IList<INotification>> Send(IMessage message, IList<ISubscriber> subscribers);
 }

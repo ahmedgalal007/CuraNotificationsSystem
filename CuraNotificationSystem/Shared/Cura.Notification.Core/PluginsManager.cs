@@ -14,7 +14,7 @@ public static class PluginsManager
 	/// <param name="relativePath"> the relative path to the assembly path</param>
 	/// <param name="assemblyPath">the assembly path</param>
 	/// <returns></returns>
-	public static IEnumerable<ICommand> GetDirectoryPluginsCommands(string relativePath, string assemblyPath = "")
+	public static IEnumerable<T> GetDirectoryPluginsCommands<T>(string relativePath, string assemblyPath = "") where T:ICommand
 	{
 		if (string.IsNullOrWhiteSpace(assemblyPath)) assemblyPath = Environment.CurrentDirectory;
 		string pluginsFolder = Path.Combine(assemblyPath, relativePath);
@@ -28,10 +28,10 @@ public static class PluginsManager
 				pluginPaths.Add(path);
 		};
 
-		IEnumerable<ICommand> commands = pluginPaths.SelectMany(pluginPath =>
+		IEnumerable<T> commands = pluginPaths.SelectMany(pluginPath =>
 		{
 			Assembly pluginAssembly = PluginsManager.LoadPlugin(pluginPath, Environment.CurrentDirectory);
-			return PluginsManager.CreateCommands(pluginAssembly);
+			return PluginsManager.CreateCommands<T>(pluginAssembly);
 		}).ToList();
 
 		return commands;
@@ -52,17 +52,17 @@ public static class PluginsManager
 		return loadContext.LoadFromAssemblyName(new AssemblyName(Path.GetFileNameWithoutExtension(pluginLocation)));
 	}
 
-	public static IEnumerable<ICommand> CreateCommands(Assembly assembly)
+	public static IEnumerable<T> CreateCommands<T>(Assembly assembly) where T:ICommand
 	{
 		int count = 0;
 
 		foreach (Type type in assembly.GetTypes())
 		{
-			if (typeof(ICommand).IsAssignableFrom(type)
+			if (typeof(T).IsAssignableFrom(type)
 				&& !type.IsInterface
 				&& !type.IsAbstract)
 			{
-				ICommand result = Activator.CreateInstance(type) as ICommand;
+				T result = (T)Activator.CreateInstance(type) ;
 				if (result != null)
 				{
 					count++;

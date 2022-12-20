@@ -19,7 +19,7 @@ try
 	//	Assembly pluginAssembly = PluginsManager.LoadPlugin(pluginPath, typeof(Program).Assembly.Location);
 	//	return PluginsManager.CreateCommands(pluginAssembly);
 	//}).ToList();
-	IEnumerable<ICommand> commands = PluginsManager.GetDirectoryPluginsCommands("..\\..\\..\\Plugins", Environment.CurrentDirectory);
+	IEnumerable<ICommand> commands = PluginsManager.GetDirectoryPluginsCommands<ICommand>("..\\..\\..\\Plugins", Environment.CurrentDirectory);
 
 
 	Console.WriteLine("Commands: ");

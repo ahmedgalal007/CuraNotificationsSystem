@@ -9,4 +9,6 @@ public interface INotification
 {
 	Guid Id { get; set; }
 	IMessage message { get; set; }
+	ISubscriber subscriber { get; set; }	
+	string ProviderType { get; set; }
 }

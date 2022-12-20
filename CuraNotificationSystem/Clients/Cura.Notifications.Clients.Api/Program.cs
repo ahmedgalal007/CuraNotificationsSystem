@@ -1,7 +1,11 @@
+using Cura.Notifications.Clients.Api.Extensions;
+using Cura.Notifications.Service.Data;
+
 var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
-
+builder.Services.AddPlugins(builder.Configuration);
+builder.Services.AddSingleton<IDataAccess,DemoDataAccess>();
 builder.Services.AddControllers();
 // Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
 builder.Services.AddEndpointsApiExplorer();

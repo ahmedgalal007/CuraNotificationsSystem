@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>Exe</OutputType>
@@ -8,6 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <ProjectReference Include="..\..\DataAccess\Cura.Notifications.Service.Data\Cura.Notifications.Service.Data.csproj" />
     <ProjectReference Include="..\..\Shared\Cura.Notification.Core\Cura.Notification.Core.csproj" />
   </ItemGroup>
 
