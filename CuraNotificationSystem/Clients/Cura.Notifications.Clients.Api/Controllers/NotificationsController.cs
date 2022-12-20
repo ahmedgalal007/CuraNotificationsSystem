@@ -1,4 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Cura.Notification.Core;
+using Cura.Notifications.Service.Data;
+using Cura.Notifications.Service.Data.Models;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
 
 // For more information on enabling Web API for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
@@ -7,35 +11,32 @@ namespace Cura.Notifications.Clients.Api.Controllers;
 [ApiController]
 public class NotificationsController : ControllerBase
 {
-	// GET: api/<NotificationsController>
-	[HttpGet]
-	public IEnumerable<string> Get()
+	public IDataAccess DataAccess { get; }
+	public IEnumerable<ICommand> Commands { get; }
+
+	public NotificationsController(IDataAccess dataAccess, IEnumerable<ICommand> commands)
 	{
-		return new string[] { "value1", "value2" };
+		DataAccess = dataAccess;	
+		Commands = commands;
 	}
 
-	// GET api/<NotificationsController>/5
-	[HttpGet("{id}")]
-	public string Get(int id)
-	{
-		return "value";
-	}
 
 	// POST api/<NotificationsController>
 	[HttpPost]
-	public void Post([FromBody] string value)
+	public async Task<List<INotification>> Post([FromBody] Message message)
 	{
+		//! We loded the providers by filtering an d searching list of plugins commands 
+		List<INotification> results = new();
+		var _commands = Commands.Where(e => e.ReturnType.Key.IsAssignableFrom(typeof(IEnumerable<INotificationsProvider>))).ToList();
+
+		foreach (var command in _commands)
+		{
+			foreach (var provider in ((IEnumerable<INotificationsProvider>)command.ReturnType.Value).ToList())
+			{
+				results.AddRange(await provider.Send(message, DataAccess.GetSubscribers.Cast<ISubscriber>().ToList()));
+			};
+		}
+		return results;
 	}
 
-	// PUT api/<NotificationsController>/5
-	[HttpPut("{id}")]
-	public void Put(int id, [FromBody] string value)
-	{
-	}
-
-	// DELETE api/<NotificationsController>/5
-	[HttpDelete("{id}")]
-	public void Delete(int id)
-	{
-	}
 }

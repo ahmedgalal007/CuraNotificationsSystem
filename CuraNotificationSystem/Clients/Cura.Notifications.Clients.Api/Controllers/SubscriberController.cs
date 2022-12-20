@@ -42,6 +42,7 @@ public class SubscriberController : ControllerBase
 	[HttpPost("SendMessage")]
 	public async Task<IList<INotification>> SendMessage([FromBody] Message message)
 	{
+		//! We loded the providers by controllers dependency injection
 		List<INotification> results = new();
 		foreach (var provider in _providers)
 		{
