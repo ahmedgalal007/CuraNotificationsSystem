@@ -6,11 +6,11 @@
 - The service will be used as a plugin by other developers in organization, multiple and varied projects
 - The targeting (input) data should be passed as parameters
 - Returns single/list of Notification Object
-
+***
 # Design Approach
 The first approach was using Decorator Pattern & CQRS ***(Command, Query, Resposibility, Segregation)*** like ****Mediatr****, but it's cons that we can't develope the service as a plugin, The confusion about, if you want the whole system as plugins based?. So I worked on that **assumption** , and  the project approach is borroed from Microsoft 
 [Create a .NET Core application with plugins](https://learn.microsoft.com/en-us/dotnet/core/tutorials/creating-app-with-plugin-support)
- 
+ *****
 ## The Design
 
 > This design depends on loading the plugins as assembly(dll) in a Plugin folder using Reflection library the Pros here as following
@@ -20,6 +20,10 @@ The first approach was using Decorator Pattern & CQRS ***(Command, Query, Respos
 ![Class Diagram](https://github.com/ahmedgalal007/CuraNotificationsSystem/blob/main/Images/ClassDiagram.png?raw=true)
 
 - When any client application starts, It use the plugin manager to load the assemblies from the folder and loop over the assemply types to load all it's commands
+**********
+
+### **Example** : *****The [Extension](https://github.com/ahmedgalal007/CuraNotificationsSystem/blob/main/CuraNotificationSystem/Clients/Cura.Notifications.Clients.Api/Extensions/CuraPluginsExtenssion.cs) in the API Client project Load the commands and Inject it to the Services*****
+
 ```c#
 // PLugin Load
 public static void AddPlugins(this IServiceCollection services, IConfiguration configuration)
