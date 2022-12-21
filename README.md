@@ -98,8 +98,14 @@ These projects Create Plugin Directory if not exisits in the target projects and
 
 All the plugins projects actually depends on the Core project only(Except the API Client depends on the Mock DemoData Project).
 
+## Using the application
+- Build and run the Solution
+- Cura.Notifications.Clients.Api is the startup project
+- Use swager to test the api 
+  - SubscriberController SendMessage PostMethod (the providers injected in the Controllers Constructor)
+  - NotificationsController Post Method(search for the providers in the commands injected in the Controllers Constructor)
 ## Features
-- A plugin pased system can be Expanded, Extended easily [Repo Link](https://github.com)
+- A plugin based system can be Expanded, Extended easily [Repo Link](https://github.com/ahmedgalal007/CuraNotificationsSystem)
 - Extend the application while it's running no rebuild is required
 - A powerfull mix of design patterns and can be extended with Mediatr, But this Demo is Just for Abstraction 
 - The command have an ALIAS name("EmailProvider", "SMSProvider") so you can filter it and call it based on string search
