@@ -16,6 +16,7 @@ The first approach was using Decorator Pattern & CQRS ***(Command, Query, Respos
 > This design depends on loading the plugins as assembly(dll) in a Plugin folder using Reflection library the Pros here as following
 - Each plugin can be developed separatley in it's own project depends only on the "Cura.Notification.Core" Project, the previous project contains the shared Interfaces and classes that the applications can comunicates with, also it contains the *****ICommand, PluginManager***** , and the *****PluginLoadContext***** Classes.
 - ICommand Interface is the base Interface for all the plugins commands classes in the system it has only Two functions "Execute" and "ExecuteAsync" for Async/Await. (Very Close to Decorator Pattern) but I have modefied it to be sutible for Plugin Pattern
+- It's Important to extends the ICommand by Interfaces not classes (Interface Segregation) for switching the impelementation in Testing, also for Injection in the Clients Apps
 
 ![Class Diagram](https://github.com/ahmedgalal007/CuraNotificationsSystem/blob/main/Images/ClassDiagram.png?raw=true)
 
