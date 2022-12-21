@@ -8,7 +8,7 @@
 - Returns single/list of Notification Object
 
 # Design Approach
-The first approach was using CQRS ***(Command, Query, Resposibility, Segregation)*** like ****Mediatr****, but it's cons that we can't develope the service as a plugin, The confusion about, if you want the hall system as plugins based?. So I worked on that **assumption** , and  the project approach is borroed from Microsoft 
+The first approach was using Decorator Pattern & CQRS ***(Command, Query, Resposibility, Segregation)*** like ****Mediatr****, but it's cons that we can't develope the service as a plugin, The confusion about, if you want the whole system as plugins based?. So I worked on that **assumption** , and  the project approach is borroed from Microsoft 
 [Create a .NET Core application with plugins](https://learn.microsoft.com/en-us/dotnet/core/tutorials/creating-app-with-plugin-support)
  
 ## The Design
